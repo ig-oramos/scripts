@@ -1,0 +1,16 @@
+[Unit]
+Description=Auto Mount Devices
+After=local-fs.target
+Requires=cryptsetup.target
+ConditionPathExists=/usr/local/bin/automount.sh
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/automount.sh
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
